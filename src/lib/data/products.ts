@@ -14,6 +14,7 @@ export interface Product {
   color: string
   accentColor: string
   emoji: string
+  image: string
 }
 
 export const AMAZON_STORE = 'https://www.amazon.co.uk/stores/Sanigone/page/B5052E80-FC20-4D57-ADAD-3E8AE135CA27'
@@ -50,6 +51,7 @@ export const products: Product[] = [
     color: '#0A2540',
     accentColor: '#00C4CC',
     emoji: '💨',
+    image: '/images/total-release.jpg',
   },
   {
     slug: 'total-blast',
@@ -81,6 +83,7 @@ export const products: Product[] = [
     color: '#1a3a5c',
     accentColor: '#00C4CC',
     emoji: '🧴',
+    image: '/images/total-blast.jpg',
   },
   {
     slug: 'dog-wipes',
@@ -112,6 +115,7 @@ export const products: Product[] = [
     color: '#2D5016',
     accentColor: '#7CB518',
     emoji: '🐾',
+    image: '/images/hero-product.png',
   },
   {
     slug: 'dog-disinfectant',
@@ -143,6 +147,7 @@ export const products: Product[] = [
     color: '#2D5016',
     accentColor: '#7CB518',
     emoji: '🏠',
+    image: '/images/hero-product.png',
   },
   {
     slug: 'quick-wash',
@@ -174,6 +179,7 @@ export const products: Product[] = [
     color: '#2D5016',
     accentColor: '#7CB518',
     emoji: '✨',
+    image: '/images/hero-product.png',
   },
   {
     slug: 'bundles',
@@ -205,5 +211,6 @@ export const products: Product[] = [
     color: '#4A0072',
     accentColor: '#C084FC',
     emoji: '📦',
+    image: '/images/total-release.jpg',
   },
 ]
