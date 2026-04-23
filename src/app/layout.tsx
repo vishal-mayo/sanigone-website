@@ -1,34 +1,38 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: { default: 'Sanigone | Professional Antiviral Sanitisation', template: '%s | Sanigone' },
-  description: 'UK-made antiviral sanitisation products killing 99.99% of viruses and bacteria. Trusted by homes, businesses, and healthcare professionals. EN-certified.',
-  keywords: ['antiviral sanitiser', 'disinfectant spray', 'room sanitiser', 'dog disinfectant', 'EN 14476', 'UK made'],
-  openGraph: {
-    siteName: 'Sanigone',
-    type: 'website',
-    locale: 'en_GB',
-  },
-}
+  title: "Sanigone - Sanitise and it's Gone | Kills 99.99% of Viruses",
+  description: "Powerful antiviral and antibacterial products you can trust to keep you, your families, pets, work colleagues and customers safe from 99.99% of viruses and pathogens.",
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-navy">
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Navbar />
-        <main className="flex-1">{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
-  )
+  );
 }

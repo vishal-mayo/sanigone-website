@@ -1,118 +1,62 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --color-navy: #0A2540;
-  --color-navy-light: #1a3a5c;
-  --color-teal: #00C4CC;
-  --color-teal-dark: #00959c;
-  --color-teal-light: #e0f9fa;
-  --color-cloud: #F0F6FF;
-  --color-slate: #64748B;
-  --color-stone: #E2E8F0;
-  --color-amazon: #FF9900;
-  --color-amazon-dark: #e68900;
-
-  --font-display: var(--font-inter), system-ui, sans-serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+:root {
+  --font-geist-sans: "Geist", system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  color: #0A2540;
-  background: #ffffff;
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
 }
 
-@keyframes spray-float {
-  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-  30%  { opacity: 0.8; }
-  100% { opacity: 0; transform: translateY(-60px) scale(1.4); }
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
-@keyframes pulse-ring {
-  0%   { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
+
+/* Custom animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
-}
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes count-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-.animate-spray { animation: spray-float 2.2s ease-out infinite; }
-.animate-float { animation: float 3.5s ease-in-out infinite; }
-.pulse-ring     { animation: pulse-ring 1.8s ease-out infinite; }
-
-.shimmer-text {
-  background: linear-gradient(90deg, #0A2540 0%, #00C4CC 50%, #0A2540 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.amazon-btn {
-  background: #FF9900;
-  color: #0A2540;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  border-radius: 999px;
-}
-.amazon-btn:hover {
-  background: #e68900;
-  box-shadow: 0 0 24px rgba(255, 153, 0, 0.45);
-  transform: translateY(-2px);
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.product-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0, 196, 204, 0.18);
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.teal-btn {
-  background: #00C4CC;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-}
-.teal-btn:hover {
-  background: #00959c;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 196, 204, 0.35);
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.outline-btn {
-  border: 2px solid #0A2540;
-  color: #0A2540;
-  font-weight: 600;
-  border-radius: 999px;
-  transition: all 0.2s ease;
-  background: transparent;
-}
-.outline-btn:hover {
-  background: #0A2540;
-  color: #fff;
-}
-
-.section-fade {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.section-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+.animate-slide-in {
+  animation: slideIn 0.6s ease-out forwards;
 }

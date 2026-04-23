@@ -1,21 +1,19 @@
-import { Hero } from '@/components/sections/Hero'
-import { HowItWorks } from '@/components/sections/HowItWorks'
-import { FeaturedProducts } from '@/components/sections/FeaturedProducts'
-import { WhoItsFor } from '@/components/sections/WhoItsFor'
-import { TrustSection } from '@/components/sections/TrustSection'
-import { ReviewsCarousel } from '@/components/sections/ReviewsCarousel'
-import { HomeCTA } from '@/components/sections/HomeCTA'
+import { HeroSlider } from "@/components/HeroSlider";
+import { Features } from "@/components/Features";
+import { ProductGrid } from "@/components/ProductGrid";
+import { Stats } from "@/components/Stats";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { CTABanner } from "@/components/CTABanner";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <Hero />
-      <HowItWorks />
-      <FeaturedProducts />
-      <WhoItsFor />
-      <TrustSection />
-      <ReviewsCarousel />
-      <HomeCTA />
-    </>
-  )
+    <main>
+      <HeroSlider />
+      <Features />
+      <ProductGrid />
+      <Stats />
+      <WhyChooseUs />
+      <CTABanner />
+    </main>
+  );
 }
