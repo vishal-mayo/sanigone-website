@@ -47,7 +47,15 @@ export default function ProductsPage() {
                   </div>
 
                   <div className="p-6 flex-1 flex flex-col">
-                    <h2 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h2>
+                    <div className="flex items-start justify-between mb-2">
+                      <h2 className="text-xl font-bold text-gray-900">{product.name}</h2>
+                      <div className="text-right">
+                        {product.originalPrice && (
+                          <span className="text-gray-400 text-sm line-through block">{product.originalPrice}</span>
+                        )}
+                        <span className="text-sanigone-green font-bold text-lg">{product.price}</span>
+                      </div>
+                    </div>
                     <p className="text-sanigone-green font-medium text-sm mb-3">{product.tagline}</p>
                     <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-1">{product.description}</p>
 

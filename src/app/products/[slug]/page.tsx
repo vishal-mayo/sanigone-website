@@ -54,7 +54,20 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <div>
                 <h1 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-4">{product.name}</h1>
                 <p className="text-white/70 text-xl mb-6">{product.tagline}</p>
-                <p className="text-white/60 text-base leading-relaxed mb-8">{product.description}</p>
+                <p className="text-white/60 text-base leading-relaxed mb-6">{product.description}</p>
+                
+                {/* Price */}
+                <div className="flex items-center gap-4 mb-8">
+                  {product.originalPrice && (
+                    <span className="text-white/40 text-2xl line-through">{product.originalPrice}</span>
+                  )}
+                  <span className="text-white text-4xl font-black">{product.price}</span>
+                  {product.originalPrice && (
+                    <span className="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      Save {Math.round((parseFloat(product.originalPrice.replace(/[£,]/g, '')) - parseFloat(product.price.replace(/[£,]/g, ''))) / parseFloat(product.originalPrice.replace(/[£,]/g, '')) * 100)}%
+                    </span>
+                  )}
+                </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   {product.keyStats.map((s) => (
@@ -154,7 +167,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     />
                   </div>
                   <h3 className="font-bold text-gray-900 text-center mb-1">{product.name}</h3>
-                  <p className="text-gray-500 text-xs text-center mb-5">{product.tagline}</p>
+                  <p className="text-gray-500 text-xs text-center mb-2">{product.tagline}</p>
+                  <div className="text-center mb-5">
+                    {product.originalPrice && (
+                      <span className="text-gray-400 text-sm line-through mr-2">{product.originalPrice}</span>
+                    )}
+                    <span className="text-sanigone-green font-bold text-xl">{product.price}</span>
+                  </div>
                   <a
                     href={product.amazonUrl}
                     target="_blank"
