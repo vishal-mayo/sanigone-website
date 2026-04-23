@@ -36,7 +36,7 @@ export const sectors: Sector[] = [
       { value: '7 days', label: 'Protection duration' }
     ],
     image: '/images/sector-healthcare.jpg',
-    icon: '🏥',
+    icon: 'Building2',
     ctaText: 'Protect Your Facility'
   },
   {
@@ -61,7 +61,7 @@ export const sectors: Sector[] = [
       { value: '500+', label: 'Sprays per can' }
     ],
     image: '/images/sector-salon.jpg',
-    icon: '✂️',
+    icon: 'Scissors',
     ctaText: 'Sanitise Your Salon'
   },
   {
@@ -86,7 +86,7 @@ export const sectors: Sector[] = [
       { value: '7 days', label: 'Protection' }
     ],
     image: '/images/sector-gym.jpg',
-    icon: '💪',
+    icon: 'Dumbbell',
     ctaText: 'Equip Your Gym'
   },
   {
@@ -111,7 +111,7 @@ export const sectors: Sector[] = [
       { value: '10 min', label: 'Room treatment' }
     ],
     image: '/images/sector-education.jpg',
-    icon: '🎓',
+    icon: 'GraduationCap',
     ctaText: 'Protect Your School'
   },
   {
@@ -136,7 +136,7 @@ export const sectors: Sector[] = [
       { value: '99.99%', label: 'Pathogen elimination' }
     ],
     image: '/images/sector-hospitality.jpg',
-    icon: '🏨',
+    icon: 'Hotel',
     ctaText: 'Elevate Your Standards'
   },
   {
@@ -161,7 +161,7 @@ export const sectors: Sector[] = [
       { value: '500+', label: 'Uses per can' }
     ],
     image: '/images/sector-transport.jpg',
-    icon: '🚕',
+    icon: 'Car',
     ctaText: 'Protect Your Vehicle'
   },
   {
@@ -186,7 +186,7 @@ export const sectors: Sector[] = [
       { value: '7 days', label: 'Residual protection' }
     ],
     image: '/images/sector-venue.jpg',
-    icon: '🎭',
+    icon: 'Drama',
     ctaText: 'Secure Your Venue'
   }
 ]

@@ -2,7 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { sectors } from '@/lib/data/sectors'
 import { AnimateIn } from '@/components/ui/AnimateIn'
-import { ArrowRight, Shield, Check } from 'lucide-react'
+import { ArrowRight, Shield, Check, Building2, Scissors, Dumbbell, GraduationCap, Hotel, Car, Drama } from 'lucide-react'
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Building2,
+  Scissors,
+  Dumbbell,
+  GraduationCap,
+  Hotel,
+  Car,
+  Drama,
+}
 
 export const metadata: Metadata = {
   title: 'Sectors',
@@ -76,7 +86,7 @@ export default function SectorsPage() {
                   { title: 'Safe & Non-Toxic', desc: 'Safe for humans and pets once dry, no harsh chemicals' },
                   { title: 'UK Made', desc: 'Proudly manufactured in the United Kingdom' },
                   { title: 'Bulk Pricing', desc: 'Competitive rates for commercial orders of 10+ units' },
-                ].map((item, i) => (
+                ].map((item) => (
                   <div key={item.title} className="flex items-start gap-4">
                     <div className="w-6 h-6 bg-sanigone-green rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-4 h-4 text-white" />
@@ -91,14 +101,14 @@ export default function SectorsPage() {
             </AnimateIn>
 
             <AnimateIn delay={0.15}>
-              <div className="bg-sanigone-green rounded-3xl p-8 text-white">
+              <div className="bg-sanigone-green rounded-3xl p-8 text-white h-full flex flex-col">
                 <Shield className="w-16 h-16 mb-6" />
                 <h3 className="text-2xl font-bold mb-4">Bulk & Trade Orders</h3>
                 <p className="text-white/80 mb-6">
                   We offer competitive pricing for businesses, healthcare facilities, schools, and 
                   other organisations ordering in quantity. Contact us for a customised quote.
                 </p>
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3 mb-8 flex-1">
                   <div className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-white/60" />
                     <span>Orders of 10+ units</span>
@@ -118,7 +128,7 @@ export default function SectorsPage() {
                 </div>
                 <Link 
                   href="/contact" 
-                  className="inline-flex items-center gap-2 bg-white text-sanigone-green px-6 py-3 rounded-full font-semibold hover:bg-sanigone-cream transition-colors"
+                  className="inline-flex items-center gap-2 bg-white text-sanigone-green px-6 py-3 rounded-full font-semibold hover:bg-sanigone-cream transition-colors mt-auto"
                 >
                   Request a Quote
                   <ArrowRight className="w-5 h-5" />
@@ -141,38 +151,43 @@ export default function SectorsPage() {
           </AnimateIn>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sectors.map((sector, i) => (
-              <AnimateIn key={sector.slug} delay={i * 0.08}>
-                <Link
-                  href={`/sectors/${sector.slug}`}
-                  className="group block bg-sanigone-cream rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="p-8">
-                    <div className="text-5xl mb-4">{sector.icon}</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-sanigone-green transition-colors">
-                      {sector.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                      {sector.headline}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {sector.stats.slice(0, 2).map((stat) => (
-                        <span 
-                          key={stat.label} 
-                          className="px-3 py-1 bg-white rounded-full text-sanigone-green text-xs font-semibold"
-                        >
-                          {stat.value} {stat.label}
-                        </span>
-                      ))}
+            {sectors.map((sector, i) => {
+              const IconComponent = iconMap[sector.icon] || Building2
+              return (
+                <AnimateIn key={sector.slug} delay={i * 0.08}>
+                  <Link
+                    href={`/sectors/${sector.slug}`}
+                    className="group flex flex-col h-full bg-sanigone-cream rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  >
+                    <div className="p-8 flex flex-col flex-1">
+                      <div className="w-14 h-14 bg-sanigone-green/10 rounded-2xl flex items-center justify-center mb-4">
+                        <IconComponent className="w-7 h-7 text-sanigone-green" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-sanigone-green transition-colors">
+                        {sector.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
+                        {sector.headline}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {sector.stats.slice(0, 2).map((stat) => (
+                          <span 
+                            key={stat.label} 
+                            className="px-3 py-1 bg-white rounded-full text-sanigone-green text-xs font-semibold"
+                          >
+                            {stat.value} {stat.label}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-2 text-sanigone-green font-semibold text-sm mt-auto">
+                        Learn more 
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 text-sanigone-green font-semibold text-sm">
-                      Learn more 
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </Link>
-              </AnimateIn>
-            ))}
+                  </Link>
+                </AnimateIn>
+              )
+            })}
           </div>
         </div>
       </section>

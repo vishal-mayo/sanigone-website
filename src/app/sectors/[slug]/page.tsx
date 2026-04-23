@@ -1,10 +1,19 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { sectors } from '@/lib/data/sectors'
 import { products } from '@/lib/data/products'
 import { AnimateIn } from '@/components/ui/AnimateIn'
-import { Check, ArrowRight, Phone, Mail, Shield, Clock, Award } from 'lucide-react'
+import { Check, ArrowRight, Phone, Shield, Clock, Award, Building2, Scissors, Dumbbell, GraduationCap, Hotel, Car, Drama, CloudFog, SprayCan, PawPrint, Sparkles, ShieldCheck, Users } from 'lucide-react'
+
+const sectorIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Building2, Scissors, Dumbbell, GraduationCap, Hotel, Car, Drama,
+}
+
+const productIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  CloudFog, SprayCan, PawPrint, Sparkles, ShieldCheck, Users,
+}
 
 export function generateStaticParams() {
   return sectors.map(s => ({ slug: s.slug }))
@@ -27,6 +36,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
 
   const sectorProducts = products.filter(p => sector.products.includes(p.slug))
   const otherSectors = sectors.filter(s => s.slug !== slug).slice(0, 3)
+  const SectorIcon = sectorIconMap[sector.icon] || Building2
 
   return (
     <>
@@ -35,7 +45,9 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         <div className="absolute inset-0 bg-gradient-to-br from-sanigone-green to-sanigone-green-dark" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <AnimateIn>
-            <div className="text-6xl mb-6">{sector.icon}</div>
+            <div className="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <SectorIcon className="w-10 h-10 text-white" />
+            </div>
             <p className="text-white/80 text-sm font-bold uppercase tracking-widest mb-4">Industry Solution</p>
             <h1 className="text-5xl md:text-6xl font-black text-white tracking-tight mb-6">{sector.title}</h1>
             <p className="text-white/70 text-xl max-w-2xl mx-auto">{sector.headline}</p>
@@ -67,22 +79,22 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <AnimateIn>
-              <div className="bg-white rounded-3xl p-8 h-full">
+              <div className="bg-white rounded-3xl p-8 h-full flex flex-col">
                 <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-6">
                   <span className="text-2xl">⚠️</span>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">The Challenge</h2>
-                <p className="text-gray-600 leading-relaxed">{sector.problem}</p>
+                <p className="text-gray-600 leading-relaxed flex-1">{sector.problem}</p>
               </div>
             </AnimateIn>
 
             <AnimateIn delay={0.1}>
-              <div className="bg-sanigone-green rounded-3xl p-8 text-white h-full">
+              <div className="bg-sanigone-green rounded-3xl p-8 text-white h-full flex flex-col">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold mb-4">The Sanigone Solution</h2>
-                <p className="text-white/80 leading-relaxed">{sector.solution}</p>
+                <p className="text-white/80 leading-relaxed flex-1">{sector.solution}</p>
               </div>
             </AnimateIn>
           </div>
@@ -100,7 +112,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sector.benefits.map((benefit, i) => (
               <AnimateIn key={benefit} delay={i * 0.08}>
-                <div className="flex items-start gap-4 bg-sanigone-cream rounded-2xl p-6">
+                <div className="flex items-start gap-4 bg-sanigone-cream rounded-2xl p-6 h-full">
                   <div className="w-10 h-10 bg-sanigone-green rounded-xl flex items-center justify-center shrink-0">
                     <Check className="w-5 h-5 text-white" />
                   </div>
@@ -121,26 +133,31 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           </AnimateIn>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {sectorProducts.map((product, i) => (
-              <AnimateIn key={product.slug} delay={i * 0.1}>
-                <Link 
-                  href={`/products/${product.slug}`}
-                  className="group block bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <div className="p-8">
-                    <div className="text-4xl mb-4">{product.emoji}</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-sanigone-green transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">{product.description}</p>
-                    <div className="flex items-center gap-2 text-sanigone-green font-semibold text-sm">
-                      View Product
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            {sectorProducts.map((product, i) => {
+              const ProductIcon = productIconMap[product.icon] || ShieldCheck
+              return (
+                <AnimateIn key={product.slug} delay={i * 0.1}>
+                  <Link 
+                    href={`/products/${product.slug}`}
+                    className="group flex flex-col h-full bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                  >
+                    <div className="p-8 flex flex-col flex-1">
+                      <div className="w-16 h-16 bg-sanigone-green/10 rounded-2xl flex items-center justify-center mb-4">
+                        <ProductIcon className="w-8 h-8 text-sanigone-green" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-sanigone-green transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4 flex-1">{product.description}</p>
+                      <div className="flex items-center gap-2 text-sanigone-green font-semibold text-sm mt-auto">
+                        View Product
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </AnimateIn>
-            ))}
+                  </Link>
+                </AnimateIn>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -204,18 +221,23 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           </AnimateIn>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {otherSectors.map((s, i) => (
-              <AnimateIn key={s.slug} delay={i * 0.1}>
-                <Link 
-                  href={`/sectors/${s.slug}`}
-                  className="block bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div className="text-3xl mb-3">{s.icon}</div>
-                  <h3 className="font-bold text-gray-900 mb-2">{s.title}</h3>
-                  <p className="text-gray-600 text-sm">{s.headline}</p>
-                </Link>
-              </AnimateIn>
-            ))}
+            {otherSectors.map((s, i) => {
+              const OtherIcon = sectorIconMap[s.icon] || Building2
+              return (
+                <AnimateIn key={s.slug} delay={i * 0.1}>
+                  <Link 
+                    href={`/sectors/${s.slug}`}
+                    className="flex flex-col h-full bg-white rounded-2xl p-6 hover:shadow-lg transition-shadow"
+                  >
+                    <div className="w-12 h-12 bg-sanigone-green/10 rounded-xl flex items-center justify-center mb-3">
+                      <OtherIcon className="w-6 h-6 text-sanigone-green" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2">{s.title}</h3>
+                    <p className="text-gray-600 text-sm flex-1">{s.headline}</p>
+                  </Link>
+                </AnimateIn>
+              )
+            })}
           </div>
         </div>
       </section>
