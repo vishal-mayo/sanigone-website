@@ -28,7 +28,7 @@ export function FeaturedProducts() {
                   style={{ background: `linear-gradient(135deg, ${product.color}15, ${product.accentColor}20)` }}
                 >
                   <div>
-                    <div className="text-5xl mb-3">{product.emoji}</div>
+                    <div className="text-5xl mb-3">{product.icon}</div>
                     <h3 className="text-xl font-bold text-navy">{product.name}</h3>
                     <p className="text-slate text-sm mt-1">{product.tagline}</p>
                   </div>

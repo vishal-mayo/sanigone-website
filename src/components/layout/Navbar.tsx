@@ -132,7 +132,7 @@ export function Navbar() {
                       className="flex items-center gap-4 p-4 rounded-xl hover:bg-cloud transition-colors group"
                       onClick={closeAll}
                     >
-                      <span className="text-2xl">{p.emoji}</span>
+                      <span className="w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">{p.name.charAt(0)}</span>
                       <div>
                         <div className="font-semibold text-navy text-sm group-hover:text-teal transition-colors">{p.name}</div>
                         <div className="text-slate text-xs mt-0.5">{p.desc}</div>
@@ -172,7 +172,7 @@ export function Navbar() {
                       className="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-cloud transition-colors group text-center"
                       onClick={closeAll}
                     >
-                      <span className="text-3xl">{s.icon}</span>
+                      <span className="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-lg">{s.name.charAt(0)}</span>
                       <span className="font-semibold text-navy text-sm group-hover:text-teal transition-colors">{s.name}</span>
                     </Link>
                   ))}
@@ -197,14 +197,14 @@ export function Navbar() {
               <p className="text-xs font-semibold text-slate uppercase tracking-widest px-3 mb-3">Products</p>
               {productLinks.map(p => (
                 <Link key={p.slug} href={`/products/${p.slug}`} className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cloud" onClick={closeAll}>
-                  <span>{p.emoji}</span>
+                  <span className="w-8 h-8 bg-teal/10 rounded-lg flex items-center justify-center text-teal font-bold text-sm">{p.name.charAt(0)}</span>
                   <span className="font-medium text-navy">{p.name}</span>
                 </Link>
               ))}
               <p className="text-xs font-semibold text-slate uppercase tracking-widest px-3 mb-3 mt-6">Solutions</p>
               {solutionLinks.map(s => (
                 <Link key={s.slug} href={`/solutions/${s.slug}`} className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cloud" onClick={closeAll}>
-                  <span>{s.icon}</span>
+                  <span className="w-8 h-8 bg-teal/10 rounded-lg flex items-center justify-center text-teal font-bold text-sm">{s.name.charAt(0)}</span>
                   <span className="font-medium text-navy">{s.name}</span>
                 </Link>
               ))}

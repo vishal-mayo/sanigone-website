@@ -13,7 +13,7 @@ export interface Product {
   amazonUrl: string
   color: string
   accentColor: string
-  emoji: string
+  icon: string
   image: string
   price?: string
   originalPrice?: string

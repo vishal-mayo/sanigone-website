@@ -103,7 +103,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
               <AnimateIn key={p.slug} delay={i * 0.1}>
                 <div className="product-card bg-cloud rounded-3xl overflow-hidden">
                   <div className="p-6 flex items-start gap-4" style={{ background: `linear-gradient(135deg, ${p.color}10, ${p.accentColor}15)` }}>
-                    <div className="text-4xl">{p.emoji}</div>
+                    <div className="text-4xl">{p.icon}</div>
                     <div>
                       <h3 className="font-bold text-navy">{p.name}</h3>
                       <p className="text-slate text-sm mt-0.5">{p.tagline}</p>
