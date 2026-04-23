@@ -61,8 +61,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   {product.originalPrice && (
                     <span className="text-white/40 text-2xl line-through">{product.originalPrice}</span>
                   )}
-                  <span className="text-white text-4xl font-black">{product.price}</span>
-                  {product.originalPrice && (
+                  <span className="text-white text-4xl font-black">{product.price || 'Contact us'}</span>
+                  {product.originalPrice && product.price && (
                     <span className="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       Save {Math.round((parseFloat(product.originalPrice.replace(/[£,]/g, '')) - parseFloat(product.price.replace(/[£,]/g, ''))) / parseFloat(product.originalPrice.replace(/[£,]/g, '')) * 100)}%
                     </span>
